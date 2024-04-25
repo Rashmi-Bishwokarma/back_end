@@ -1,9 +1,20 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 
+// Allow the following methods from any origin
+header("Access-Control-Allow-Methods: POST");
+
+// Allow the following headers from any origin
+header("Access-Control-Allow-Headers: Content-Type");
 include "./database/connection.php";
 
 // Check if the necessary data is present, including the token
-if (isset($_POST['token'], $_POST['message'])) {
+if (
+    isset(
+    $_POST['token'],
+    $_POST['message'])
+     ) {
+
     $token = $_POST['token'];
     $message = $_POST['message'];
     $rating = isset($_POST['rating']) ? (int)$_POST['rating'] : null; // Rating is optional

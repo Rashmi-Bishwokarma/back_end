@@ -1,5 +1,11 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 
+// Allow the following methods from any origin
+header("Access-Control-Allow-Methods: POST");
+
+// Allow the following headers from any origin
+header("Access-Control-Allow-Headers: Content-Type");
 if (!isset($_POST['token'])) {
     echo json_encode([
         "success" => false,
@@ -14,7 +20,7 @@ include "./helpers/auth.php";
 $user_id = getUserId($_POST['token']);
 
 
-$sql = "SELECT user_id,email, full_name,role, email, address FROM users WHERE user_id = '$user_id'";
+$sql = "SELECT user_id,email, full_name,role, email, address, date_of_birth, description, profile_image FROM users WHERE user_id = '$user_id'";
 
 global $CON;
 
